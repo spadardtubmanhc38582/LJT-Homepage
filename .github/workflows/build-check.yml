@@ -20,3 +20,11 @@ jobs:
         run: bundle exec jekyll build
         env:
           JEKYLL_ENV: production
+      - name: Verify homepage content
+        run: |
+          grep -q 'SynLogic' _site/index.html
+          grep -q 'SynLogic' _site/publications/index.html
+          grep -q 'jliugi@connect.ust.hk' _site/index.html
+          grep -q '/LJT-Homepage/publications/' _site/index.html
+      - name: List generated site files
+        run: find _site -maxdepth 2 -type f | sort
